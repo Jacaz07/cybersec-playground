@@ -1,0 +1,31 @@
+# Network discovery
+
+sudo nmap -sn 192.168.56.0/24
+
+# Full TCP port scan with service detection
+
+sudo nmap -sS -sV -p- --min-rate=3000 192.168.56.106
+
+# HTTP enumeration
+
+nmap -p 80 --script=http-enum,http-headers,http-methods 192.168.56.106
+
+# Directory brute-forcing
+
+gobuster dir -u http://192.168.56.106/ -w /usr/share/wordlists/dirb/common.txt -x php,txt,html
+
+# CGI enumeration
+
+gobuster dir -u http://192.168.56.106/cgi-bin/ -w /usr/share/wordlists/dirb/common.txt
+
+# LFI test
+
+curl "http://192.168.56.106/index.php?page=../../../../etc/passwd"
+
+# Shellshock check
+
+nmap -p 80 --script=http-shellshock 192.168.56.106
+
+# SSH algorithm enumeration
+
+nmap -p 22 --script=ssh2-enum-algos 192.168.56.106

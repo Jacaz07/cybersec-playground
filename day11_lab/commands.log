@@ -1,0 +1,15 @@
+whoami
+
+uname -a
+
+cat /etc/passwd
+
+sudo -l
+
+find / -perm -4000 -type f 2>/dev/null
+
+nmap --interactive
+
+!sh
+
+id

