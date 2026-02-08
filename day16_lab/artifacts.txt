@@ -1,0 +1,35 @@
+Artifacts collected during Day 16 lab:
+
+[Attempt 1 — PATH Hijacking]
+
+- File: /usr/local/bin/backup.sh
+- Content: bash reverse shell
+- PATH manipulated to include /tmp
+- Malicious tar binary created
+- Result: No privilege escalation
+- Reason: Script execution context did not allow PATH hijack
+
+[Attempt 2 — Cron Job Abuse]
+
+- File inspected: /etc/crontab
+- Cron jobs executed as root
+- No writable scripts or directories found
+- Result: Exploitation not possible
+
+[Final Successful Attempt — Sudo Misconfiguration]
+
+- Command: sudo -l
+- Output: (ALL) ALL
+- Root shell obtained via:
+  - sudo -i
+  - sudo su -
+
+[Verification]
+
+- whoami → root
+- id → uid=0(root)
+
+[Target System]
+
+- Metasploitable2
+- Ubuntu 8.04 based

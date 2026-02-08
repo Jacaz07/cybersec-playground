@@ -1,0 +1,5 @@
+User: msfadmin
+Privilege escalation method: sudo ALL
+Final user: root
+Hostname: metasploitable
+Kernel: Linux 2.6.24

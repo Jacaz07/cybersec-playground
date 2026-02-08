@@ -1,0 +1,10 @@
+Anonymous login successful
+  .                                   D        0  Mon Nov 10 21:05:39 2025
+  ..                                 DR        0  Sun May 20 21:36:12 2012
+  .ICE-unix                          DH        0  Mon Nov 10 18:41:23 2025
+  .X11-unix                          DH        0  Mon Nov 10 18:41:30 2025
+  4510.jsvc_up                        R        0  Mon Nov 10 18:41:37 2025
+  .X0-lock                           HR       11  Mon Nov 10 18:41:30 2025
+  pwn.txt                             A       12  Mon Nov 10 20:52:05 2025
+
+		7282168 blocks of size 1024. 5335428 blocks available

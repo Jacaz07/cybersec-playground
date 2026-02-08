@@ -1,0 +1,29 @@
+Target System: Metasploitable2
+Initial User: msfadmin
+Privilege Escalation Type: Local (SUDO misconfiguration)
+
+Key Findings:
+- World-writable directories found but not exploitable
+- Cron jobs present but not writable
+- PATH hijacking attempt unsuccessful
+- Critical sudo configuration flaw discovered
+
+Exploited Vector:
+- Unrestricted sudo permissions: (ALL) ALL
+
+Result:
+- Full root shell obtained
+- UID 0 confirmed
+
+Relevant Files:
+- /etc/sudoers
+- /etc/cron.daily/backup.sh
+- /var/www/dav/
+
+Failed Vectors (Documented):
+- Cron job injection
+- PATH hijacking
+- World-writable web directories
+
+Successful Vector:
+- SUDO privilege escalation

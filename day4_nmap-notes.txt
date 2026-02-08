@@ -1,0 +1,6 @@
+Najważniejsze pojęcia: 
+IP - adres przypisany do urządzenia w sieci, 
+MAC ADRESS - fizyczny adres karty sieciowej, 
+DNS - tłumaczy nazwy domen, 
+Gateway - wyjście z sieci lokalnej do internetu, 
+Subnet mask - określa, które adresy należą do sieci lokalnej

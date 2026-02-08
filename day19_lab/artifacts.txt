@@ -1,0 +1,31 @@
+# Target IP: 192.168.56.105
+
+# Attacker IP: 192.168.56.101
+
+# Open Ports:
+
+22/tcp   OpenSSH 2.9p2
+80/tcp   Apache 1.3.20
+111/tcp  rpcbind
+139/tcp  Samba
+443/tcp  Apache mod_ssl + OpenSSL 0.9.6b
+32768/tcp RPC status
+
+# Exploits Used:
+
+- OpenFuck v3.0.4 (remote OpenSSL exploit)
+- ptrace local kernel exploit (3.c)
+
+# Initial Access:
+
+- User: apache
+- Shell: /bin/bash (limited)
+
+# Privilege Escalation:
+
+- Local kernel exploit
+- Result: root shell
+
+# Final Access:
+
+uid=0(root)

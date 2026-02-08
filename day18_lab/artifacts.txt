@@ -1,0 +1,22 @@
+Artifact: /tmp/rootbash
+Type: SUID-enabled binary
+Owner: root
+Permissions: -rwsr-xr-x
+Impact: Local Privilege Escalation to root
+
+Artifact: /bin/bash
+Observation: SUID bit already set
+Impact: System-wide privilege escalation risk
+
+Artifact: ~/.bash_history
+Status: Cleared by user
+
+Artifact: /etc/crontab
+Status: Not writable (secure configuration)
+
+Artifact: /etc/passwd
+Status: Not writable (secure configuration)
+
+Logs:
+- /var/log/auth.log (protected)
+- /var/log/secure (partially accessible)

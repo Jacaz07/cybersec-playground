@@ -1,0 +1,25 @@
+Dzień 8 — Analiza ruchu HTTP
+Data: 2025-10-17
+Plik PCAP: day8_capture.pcap
+
+1) Interfejs użyty: eth0
+2) Akcja w przeglądarce: odwiedzono http://neverssl.com i http://example.com
+
+3) Zidentyfikowane żądania HTTP (ip.src | host | metoda | URI):
+192.168.56.102 | neverssl.com | GET | /
+192.168.56.102 | example.com  | GET | /
+
+4) Odszukane dane uwierzytelniające:
+- Authorization header found: Basic amFjazpwYXNzd29yZA==
+  -> decoded: jac:password
+
+5) Pliki pobrane z serwera (eksportowane z Wireshark -> Export Objects -> HTTP):
+- /images/logo.png  (zapisane jako logo.png)
+
+6) Wnioski:
+- HTTP przesyła dane w formacie jawnego tekstu — w labie udało się znaleźć Basic Auth i zdekodować user:pass.
+- HTTPS (TLS) chroni takie dane — na publicznych sieciach unikaj logowania przez HTTP.
+
+7) Pliki dołączone:
+- day8_capture.pcap
+- logo.png

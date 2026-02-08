@@ -1,0 +1,26 @@
+Target: 192.168.56.106
+
+Endpoints:
+
+- /index.php
+- /pingit.php
+
+Tested Vulnerabilities:
+
+- Local File Inclusion (LFI)
+- Remote File Inclusion (RFI)
+- PHP Wrappers
+- File Upload
+
+Findings:
+
+- No confirmed LFI/RFI
+- No upload functionality
+- Legacy PHP environment
+- Suitable pivot target via SQL Injection
+
+Prepared Pivot:
+
+- SQLi -> filesystem
+- SQLi -> credential extraction
+- SQLi -> code disclosure

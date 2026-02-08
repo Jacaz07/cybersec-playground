@@ -1,0 +1,6 @@
+SUID binary found:
+/usr/bin/nmap
+
+Privilege escalation proof:
+whoami -> root
+Access to /etc/shadow confirmed

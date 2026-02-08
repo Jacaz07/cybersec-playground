@@ -1,0 +1,8 @@
+whoami: root
+
+hostname: metasploitable
+
+kernel: Linux metasploitable 2.6.24-16-server
+
+network:
+- 192.168.56.101

@@ -1,0 +1,11 @@
+
+Privilege escalation via sudo misconfiguration:
+- Command allowed: /usr/bin/vim
+- NOPASSWD flag enabled
+- Root shell obtained
+
+PATH hijacking vulnerability:
+- /tmp present in PATH
+- Script executed command without full path
+- Malicious binary injected
+- Root shell obtained

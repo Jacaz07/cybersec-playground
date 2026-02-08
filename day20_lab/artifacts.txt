@@ -1,0 +1,31 @@
+Target IP: 192.168.56.106
+Login Page: /index.php
+Ping Endpoint: /pingit.php
+
+Vulnerable Parameter:
+
+- uname (POST)
+
+SQL Injection Types:
+
+- Boolean-based blind
+- Time-based blind (BENCHMARK)
+
+Database:
+
+- MySQL < 5.0.12
+- Database name: webapp
+
+Tools Used:
+
+- curl
+- sqlmap
+
+Authentication Bypass:
+
+- admin' OR '1'='1
+
+Command Injection:
+
+- No confirmed server-side execution
+- Reflected input observed

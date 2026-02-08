@@ -1,0 +1,28 @@
+Target VM: Kioptrix
+IP Address: 192.168.56.106
+Web Server: Apache 2.0.52
+PHP Version: 4.3.9
+DBMS: MySQL < 5.0.12
+OS: Linux (CentOS)
+
+Vulnerabilities Identified:
+
+- SQL Injection (POST parameter: uname)
+
+Vulnerabilities Rejected:
+
+- Command Injection (pingit.php)
+- Remote File Write via SQL
+- Direct Shell Access
+
+Key Findings:
+
+- pingit.php reflects input, does not execute it
+- $(...) expansion occurred on attacker machine
+- SSH uses deprecated KEX algorithms
+
+Status:
+
+- No shell obtained
+- No file written
+- Enumeration phase complete
