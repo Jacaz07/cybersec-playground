@@ -1,0 +1,43 @@
+Day 25 – Artifacts Collected
+
+Target IP: 192.168.56.106
+
+---
+
+Service Versions:
+- OpenSSH 3.9p1
+- Apache 2.0.52 (CentOS)
+- MySQL (localhost restricted)
+- RPCBind
+- CUPS (IPP)
+
+---
+
+SSL Findings:
+- SSLv2 enabled
+- SSLv3 enabled
+- TLS 1.0 enabled
+- Export ciphers supported
+- RC4 supported
+- DES/3DES supported
+- MD5 certificate signature
+- Expired certificate
+
+---
+
+SSH Findings:
+- SSHv1 supported
+- Password authentication enabled
+
+---
+
+MySQL:
+- Remote access denied
+- Likely configured for localhost only
+
+---
+
+Notes:
+- Legacy CentOS-based system
+- Exploit compatibility issues observed
+- Modern cryptographic libraries incompatible with older services

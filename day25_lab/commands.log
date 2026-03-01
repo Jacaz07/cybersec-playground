@@ -1,0 +1,18 @@
+Day 25 – Command Log
+
+showmount -e 192.168.56.106
+rpcinfo -p 192.168.56.106
+
+nmap --script ssh-auth-methods -p 22 192.168.56.106
+nmap -sC -p 22,80,443,111,631,3306 192.168.56.106
+
+ssh -1 root@192.168.56.106
+ssh -1 -c 3des root@192.168.56.106
+
+curl -X PUT http://192.168.56.106:631/test.txt -d "test"
+
+nmap --script ssl-heartbleed -p 443 192.168.56.106
+nmap --script ssl-enum-ciphers -p 443 192.168.56.106
+
+mysql -h 192.168.56.106 -u root
+mysql -h 192.168.56.106 -u root -p
